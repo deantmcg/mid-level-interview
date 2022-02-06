@@ -27,7 +27,7 @@ class Command(BaseCommand):
                     l.save()
                 else:
                     self.set_user_contact(existing.user, line[5])
-                    u.save()
+                    existing.user.save()
 
     def get_existing_login(self, csv_line):
         try:
