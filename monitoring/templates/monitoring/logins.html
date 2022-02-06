@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Logins</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        th {
+            width: 25%;
+            text-align: center;
+        }
+
+        td {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Server Logins</h1>
+        {% for server in server_login_list %}
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-sm">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th colspan="4" style="color:darkorange; text-align:center">
+                                {{ server.details.ip }} {{ server.details.name }}
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>User</th>
+                            <th>Time</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for login in server.logins %}
+                        <tr>
+                            <td>{{ login.user.username }} / {{ login.user.full_name }}</td>
+                            <td>{{ login.time }}</td>
+                            <td>{{ login.user.email }}</td>
+                            <td>{{ login.user.phone_number }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

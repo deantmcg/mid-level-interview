@@ -10,7 +10,7 @@ class User(models.Model):
 
 # SERVER MODEL
 class Server(models.Model):
-    name = models.CharField(max_length=50, unique=True)
+    name = models.CharField(max_length=50)
     ip = models.CharField(max_length=15, unique=True, null=False)
 
 
