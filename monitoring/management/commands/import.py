@@ -6,8 +6,6 @@ from dateutil import parser
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        Server.objects.all().delete()
-        User.objects.all().delete()
         with open('data/logins.csv', 'r') as csv_file:
             csv_reader = csv.reader(csv_file)
             next(csv_reader, None) # skip headers
