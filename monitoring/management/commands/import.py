@@ -26,7 +26,11 @@ class Command(BaseCommand):
                     u.save()
                     l.save()
                 else:
+<<<<<<< HEAD
                     self.set_user_contact(existing.user, line[4])
+=======
+                    self.set_user_contact(existing.user, line[5])
+>>>>>>> 68db9457c69ab5c2c768cdabaacc659dab4a2963
                     existing.user.save()
 
     def get_existing_login(self, csv_line):
