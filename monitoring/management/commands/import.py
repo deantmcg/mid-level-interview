@@ -26,8 +26,8 @@ class Command(BaseCommand):
                     u.save()
                     l.save()
                 else:
-                    self.set_user_contact(existing.user, line[5])
-                    u.save()
+                    self.set_user_contact(existing.user, line[4])
+                    existing.user.save()
 
     def get_existing_login(self, csv_line):
         try:
@@ -55,6 +55,7 @@ class Command(BaseCommand):
     def get_user(self, username, full_name, contact_details):
         try:
             u = User.objects.get(username = username)
+            self.set_user_contact(u, contact_details)
             return u
         except User.DoesNotExist:
             u = User(
@@ -66,9 +67,11 @@ class Command(BaseCommand):
 
     def set_user_contact(self, user, contact_details):
         if '@' in contact_details:
-            user.email = contact_details
+            if user.email != contact_details:
+                user.email = contact_details
         elif contact_details != '':
-            user.phone_number = contact_details
+            if user.phone_number != contact_details:
+                user.phone_number = contact_details
 
     def convert_date(self, date_str):
         date_str = date_str.replace("\\", "/").replace("|", "/")
