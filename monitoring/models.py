@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.db import models
 
 # USER MODEL
@@ -19,3 +20,6 @@ class Login(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
     server = models.ForeignKey(Server, on_delete=models.CASCADE, null=False)
     time = models.DateTimeField(null=False)
+
+    def is_valid_login(self):
+        return self.time.year > 1980 and self.time.year <= datetime.now().year
